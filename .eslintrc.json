@@ -1,0 +1,13 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "arrow-body-style": "error",
+    "prefer-arrow-callback": "error",
+    "no-restricted-syntax": [
+      "error",
+      "FunctionExpression",
+      "FunctionDeclaration"
+    ],
+    "no-console": ["error", { "allow": ["warn", "error"] }]
+  }
+}
