@@ -1,12 +1,10 @@
 import { Button } from "@/components/waifui/button";
-import { SwitchThemeButton } from "@/components/theme/switch-theme-button";
 
 const Page = () => (
-  <>
-    <SwitchThemeButton />
-    <Button>Test</Button>
-    <h1>WaifUI</h1>
-  </>
+  <div>
+    <h1>Hello World</h1>
+    <Button />
+  </div>
 );
 
 export default Page;

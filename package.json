@@ -4,27 +4,27 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@tamagui/config": "^1.119.0",
-    "@tamagui/next-plugin": "^1.119.0",
-    "@tamagui/next-theme": "^1.119.0",
     "next": "14",
     "react": "18",
     "react-dom": "18",
-    "tamagui": "^1.119.0"
+    "react-native": "^0.76.5",
+    "react-native-web": "^0.19.13",
+    "tamagui": "^1.120.1",
+    "webpack": "^5.97.1"
   },
   "devDependencies": {
+    "@tamagui/config": "^1.120.1",
+    "@tamagui/next-plugin": "^1.120.1",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3",
-    "typescript": "^5",
-    "webpack": "^5.97.0"
+    "eslint-config-next": "15.0.4",
+    "typescript": "^5"
   }
 }

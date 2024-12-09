@@ -1,3 +1,3 @@
-# WaifUI
+# waifui
 
 WIP, to be updated...
