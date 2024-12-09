@@ -1,23 +1,40 @@
 "use client";
 
-import { useState, useEffect, ReactNode } from "react";
+import { useEffect, ReactNode } from "react";
+import { StyleSheet } from "react-native";
+import { useServerInsertedHTML } from "next/navigation";
 import { TamaguiProvider } from "tamagui";
 import {
   NextThemeProvider,
   useRootTheme,
   getSystemTheme,
 } from "@tamagui/next-theme";
-
 import tamaguiConfig from "../../tamagui.config";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useRootTheme();
-  const [isMounted, setIsMounted] = useState(false);
+
+  useServerInsertedHTML(() => {
+    // @ts-expect-error: doc suggests this
+    const rnwStyle = StyleSheet.getSheet();
+
+    return (
+      <>
+        <style
+          dangerouslySetInnerHTML={{ __html: rnwStyle.textContent }}
+          id={rnwStyle.id}
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: tamaguiConfig.getCSS(),
+          }}
+        />
+      </>
+    );
+  });
 
   useEffect(() => {
     const systemTheme = getSystemTheme();
-
-    setIsMounted(true);
 
     const preferredTheme = localStorage.getItem("theme");
 
@@ -27,10 +44,6 @@ export const Providers = ({ children }: { children: ReactNode }) => {
       setTheme(preferredTheme as "light" | "dark");
     }
   }, [setTheme]);
-
-  if (!isMounted) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <NextThemeProvider

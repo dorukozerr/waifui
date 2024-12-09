@@ -2,6 +2,8 @@
   "name": "waifui",
   "version": "0.1.0",
   "private": true,
+  "author": "Doruk Özer <dorukozer@protonmail.com>",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

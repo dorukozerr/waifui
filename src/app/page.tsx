@@ -1,10 +1,5 @@
-import { ThemeSwitcher } from "@/components/header/theme-switcher";
+import { HomePage } from "@/pages/home-page";
 
-const Page = () => (
-  <div>
-    <ThemeSwitcher />
-    <h1>Hello World</h1>
-  </div>
-);
+const Page = () => <HomePage />;
 
 export default Page;
