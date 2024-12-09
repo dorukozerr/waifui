@@ -2188,6 +2188,14 @@
     tamagui-loader "1.120.1"
     url-loader "^4.1.1"
 
+"@tamagui/next-theme@^1.120.1":
+  version "1.120.1"
+  resolved "https://registry.yarnpkg.com/@tamagui/next-theme/-/next-theme-1.120.1.tgz#3f6e289595e904e9311c17ffd38a5b53aff41089"
+  integrity sha512-Xotrg7w1zZR7sGMhKtOciCHBZV0IL6strOckmgNRwvPsz0hX6ulAY7HbYv2UBqtee3nONYhNj318cAdO81+cPA==
+  dependencies:
+    "@tamagui/constants" "1.120.1"
+    "@tamagui/use-event" "1.120.1"
+
 "@tamagui/normalize-css-color@1.120.1":
   version "1.120.1"
   resolved "https://registry.yarnpkg.com/@tamagui/normalize-css-color/-/normalize-css-color-1.120.1.tgz#f43b7133147e3513a925cb2d61ad7f87f9178330"
