@@ -2,7 +2,7 @@
 
 import { YStack } from "tamagui";
 import { useThemeSetting } from "@tamagui/next-theme";
-import { Moon } from "lucide-react";
+import { Moon, Sun, MonitorCog } from "lucide-react";
 import {
   Popover,
   PopoverTrigger,
@@ -12,27 +12,58 @@ import {
 import { Button } from "@/components/waifui/button";
 
 export const ThemeSwitcher = () => {
-  const themeSetting = useThemeSetting();
+  const { set, resolvedTheme } = useThemeSetting();
+
+  const themeVariants = [
+    {
+      label: (
+        <>
+          <Sun style={{ width: "1.2rem", height: "1.2rem" }} />
+          Light
+        </>
+      ),
+      onPress: () => set("light"),
+    },
+    {
+      label: (
+        <>
+          <Moon style={{ width: "1.2rem", height: "1.2rem" }} />
+          Dark
+        </>
+      ),
+      onPress: () => set("dark"),
+    },
+    {
+      label: (
+        <>
+          <MonitorCog style={{ width: "1.2rem", height: "1.2rem" }} />
+          System
+        </>
+      ),
+      onPress: () => set("system"),
+    },
+  ];
 
   return (
     <Popover>
       <PopoverTrigger>
-        <Button>Trigger</Button>
+        <Button variant="outlined" size="icon">
+          {resolvedTheme === "dark" ? (
+            <Moon style={{ width: "1.2rem", height: "1.2rem" }} />
+          ) : resolvedTheme === "light" ? (
+            <Sun style={{ width: "1.2rem", height: "1.2rem" }} />
+          ) : null}
+        </Button>
       </PopoverTrigger>
       <PopoverContent>
-        <YStack gap="$2">
-          <Button variant="default" onPress={() => themeSetting.toggle()}>
-            <Moon />
-            Default
-          </Button>
-          <Button variant="destructive">Desctructive</Button>
-          <Button variant="outlined">Outlined</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
-          <PopoverClose>
-            <Button>Close</Button>
-          </PopoverClose>
+        <YStack w="$10" gap="$2" bg="transparent">
+          {themeVariants.map(({ label, onPress }, index) => (
+            <PopoverClose key={`themeSwitcher-${index}`}>
+              <Button variant="outlined" onPress={onPress} w="100%">
+                {label}
+              </Button>
+            </PopoverClose>
+          ))}
         </YStack>
       </PopoverContent>
     </Popover>

@@ -14,13 +14,13 @@ export const HomePage = () => (
     $xs={{ pt: "$4" }}
   >
     <YStack gap="$4" ai="center">
-      <Text ff="$body" fos="$10" ta="center">
+      <Text fos="$10" ta="center">
         Welcome to WaifUI
       </Text>
-      <Text ff="$body" fos="$8" ta="center">
+      <Text fos="$8" ta="center">
         Source of Mediocre React Components
       </Text>
-      <Text w="max-content" $xs={{ fos: 9 }} $sm={{ fos: 14 }}>
+      <Text ff="$mono" w="max-content" $xs={{ fos: 9 }} $sm={{ fos: 14 }}>
         {`⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣷⣜⢿⣧⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠻⣿⣿⣿⣿⣦⠄⠄
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣮⡻⣷⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣆⠙⣿⣿⣿⣿⣧⠄
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⣿⣿⣿⣿⣿⣿⣧⢸⣿⣿⣿⡘⢿⣮⡛⣷⡙⢿⣿⡏⢻⣿⣿⣿⣧⠙⢿⣿⣿⣷⠘⢿⣿⣆⢿⣿⣿⣿⣿⣆

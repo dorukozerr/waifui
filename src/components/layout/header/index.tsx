@@ -1,30 +1,44 @@
-import Link from "next/link";
-import { Header as TamaguiHeader, H1, XStack, Text } from "tamagui";
-import { ThemeSwitcher } from "./theme-switcher";
+"use client";
 
-export const Header = () => (
-  <TamaguiHeader
-    px="$4"
-    py="$2"
-    w="100%"
-    maw="1440px"
-    mx="auto"
-    bbw={1}
-    boc="$borderColor"
-  >
-    <XStack w="100%" jc="space-between" ai="center">
-      <Link href="/">
-        <H1>WaifUI</H1>
-      </Link>
-      <XStack gap="$4" ai="center">
-        <Link href="/docs">
-          <Text ff="$body">Docs</Text>
-        </Link>
-        <Link href="/components">
-          <Text ff="$body">Components</Text>
-        </Link>
-        <ThemeSwitcher />
-      </XStack>
-    </XStack>
-  </TamaguiHeader>
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { Header as TamaguiHeader, XStack } from "tamagui";
+import { Button } from "@/components/waifui/button";
+
+const ThemeSwitcher = dynamic(
+  () =>
+    import("@/components/layout/header/theme-switcher").then(
+      (mod) => mod.ThemeSwitcher
+    ),
+  { ssr: false }
 );
+
+export const Header = () => {
+  const router = useRouter();
+
+  return (
+    <TamaguiHeader
+      p="$4"
+      w="100%"
+      maw="1440px"
+      mx="auto"
+      bbw={1}
+      boc="$borderColor"
+    >
+      <XStack w="100%" jc="space-between" ai="center">
+        <Button fontSize="lg" variant="ghost" onPress={() => router.push("/")}>
+          WaifUI
+        </Button>
+        <XStack gap="$4" ai="center">
+          <Button variant="link" onPress={() => router.push("/docs")}>
+            Docs
+          </Button>
+          <Button variant="link" onPress={() => router.push("/components")}>
+            Components
+          </Button>
+          <ThemeSwitcher />
+        </XStack>
+      </XStack>
+    </TamaguiHeader>
+  );
+};
