@@ -1,0 +1,32 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/apps/waifui
+            
+            export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_waifui.com"
+            export NVM_DIR="$HOME/.nvm"
+            
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            git pull
+            
+            yarn
+            
+            yarn build
+            
+            pm2 restart waifui
