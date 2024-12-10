@@ -2103,13 +2103,6 @@
     "@tamagui/stacks" "1.120.1"
     "@tamagui/use-controllable-state" "1.120.1"
 
-"@tamagui/helpers-icon@1.120.1":
-  version "1.120.1"
-  resolved "https://registry.yarnpkg.com/@tamagui/helpers-icon/-/helpers-icon-1.120.1.tgz#f1d9dac42f3338058032250da1d41841685ec41e"
-  integrity sha512-c29EjN7T7/QpdZ/2oP0j/+iAOW/hwVAIkY7n1NSW7gdMKNWjXGcc/U7Z96HR9z5f06J9kYYFMI7dgJT+Y9bkvA==
-  dependencies:
-    "@tamagui/core" "1.120.1"
-
 "@tamagui/helpers-node@1.120.1":
   version "1.120.1"
   resolved "https://registry.yarnpkg.com/@tamagui/helpers-node/-/helpers-node-1.120.1.tgz#c62884f4ddbd4fddd6ea2d492faa059e92aeaaef"
@@ -2176,14 +2169,6 @@
     "@tamagui/stacks" "1.120.1"
     "@tamagui/text" "1.120.1"
     "@tamagui/web" "1.120.1"
-
-"@tamagui/lucide-icons@^1.120.1":
-  version "1.120.1"
-  resolved "https://registry.yarnpkg.com/@tamagui/lucide-icons/-/lucide-icons-1.120.1.tgz#5070f23ecfe383b3c34820912283a86761273cb5"
-  integrity sha512-I7xcre+TRFU8cEccsN/1Hlkw4GuT8nCVr+nwCtStRRGG0qx6UNTT9MZA4siBJyj5H+ID0/ZXbYPxtYaLLzIf8w==
-  dependencies:
-    "@tamagui/core" "1.120.1"
-    "@tamagui/helpers-icon" "1.120.1"
 
 "@tamagui/next-plugin@^1.120.1":
   version "1.120.1"
@@ -5958,6 +5943,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+lucide-react@^0.468.0:
+  version "0.468.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.468.0.tgz#830c1bfd905575ddd23b832baa420c87db166910"
+  integrity sha512-6koYRhnM2N0GGZIdXzSeiNwguv1gt/FAjZOiPl76roBi3xKEXa4WmfpxgQwTTL4KipXjefrnf3oV4IsYhi4JFA==
 
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"

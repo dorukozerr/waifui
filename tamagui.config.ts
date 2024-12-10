@@ -81,10 +81,71 @@ const monoFont = createFont({
   },
 });
 
+const lightColors = {
+  background: "#FFFFFF",
+
+  foreground: "#1E293B",
+
+  muted: "#F1F5F9",
+  mutedForeground: "#64748B",
+
+  popover: "#FFFFFF",
+  popoverForeground: "#1E293B",
+
+  border: "#E2E8F0",
+
+  input: "#E2E8F0",
+
+  primary: "#1E293B",
+  primaryForeground: "#F8FAFC",
+
+  secondary: "#F1F5F9",
+  secondaryForeground: "#1E293B",
+
+  accent: "#F1F5F9",
+  accentForeground: "#1E293B",
+
+  destructive: "#FF0000",
+  destructiveForeground: "#F8FAFC",
+
+  ring: "#94A3B8",
+};
+
+const darkColors = {
+  background: "#030712",
+
+  foreground: "#E2E8F0",
+
+  muted: "#1E293B",
+  mutedForeground: "#94A3B8",
+
+  popover: "#030712",
+  popoverForeground: "#94A3B8",
+
+  border: "#1E293B",
+
+  input: "#1E293B",
+
+  primary: "#F8FAFC",
+  primaryForeground: "#0F172A",
+
+  secondary: "#1E293B",
+  secondaryForeground: "#F8FAFC",
+
+  accent: "#1E293B",
+  accentForeground: "#F8FAFC",
+
+  destructive: "#7F1D1D",
+  destructiveForeground: "#F8FAFC",
+
+  ring: "#1E293B",
+};
+
 const extendedTokens = createTokens({
   ...config.tokens,
   color: {
-    test: "#FF0000",
+    ...config.tokens.color,
+    ...lightColors,
   },
 });
 
@@ -96,12 +157,22 @@ export const tamaguiConfig = createTamagui({
     mono: monoFont,
   },
   tokens: extendedTokens,
+  themes: {
+    light: {
+      ...config.themes.light,
+      ...lightColors,
+    },
+    dark: {
+      ...config.themes.dark,
+      ...darkColors,
+    },
+  },
   settings: {
     onlyAllowShorthands: true,
   },
 });
 
-type Conf = typeof tamaguiConfig;
+export type Conf = typeof tamaguiConfig;
 
 declare module "tamagui" {
   interface TamaguiCustomConfig extends Conf {}

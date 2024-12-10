@@ -6,7 +6,6 @@ const nextConfig = (_name, { defaultConfig }) => {
     reactStrictMode: true,
     webpack: (config) => {
       config.cache = false;
-
       return config;
     },
   };
