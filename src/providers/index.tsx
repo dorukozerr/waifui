@@ -9,6 +9,7 @@ import {
   useRootTheme,
   getSystemTheme,
 } from "@tamagui/next-theme";
+import { Layout } from "@/components/layout";
 import tamaguiConfig from "../../tamagui.config";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
@@ -52,7 +53,7 @@ export const Providers = ({ children }: { children: ReactNode }) => {
       }}
     >
       <TamaguiProvider defaultTheme={theme} config={tamaguiConfig}>
-        {children}
+        <Layout>{children}</Layout>
       </TamaguiProvider>
     </NextThemeProvider>
   );
