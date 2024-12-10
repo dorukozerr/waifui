@@ -1,5 +1,5 @@
-import { H1 } from "tamagui";
+import { Docs } from "@/views/docs";
 
-const Page = () => <H1>Docs Page</H1>;
+const Page = () => <Docs />;
 
 export default Page;

@@ -1,5 +1,5 @@
-import { H1 } from "tamagui";
+import { Components } from "@/views/components";
 
-const Page = () => <H1>Components Page</H1>;
+const Page = () => <Components />;
 
 export default Page;
