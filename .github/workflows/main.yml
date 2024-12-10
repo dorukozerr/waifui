@@ -16,17 +16,19 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -e
+
             cd ~/apps/waifui
-            
+
             export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_waifui.com"
             export NVM_DIR="$HOME/.nvm"
-            
+
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            
+
             git pull
-            
+
             yarn
-            
+
             yarn build
-            
+
             pm2 restart waifui
