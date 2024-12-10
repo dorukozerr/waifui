@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import { View, ScrollView } from "tamagui";
+import { View, Main } from "tamagui";
 import { Header } from "@/components/layout/header";
 
 export const Layout = ({ children }: { children: ReactNode }) => (
-  <View bc="$color4" h="100%">
+  <View bc="$background" h="100%" dsp="flex" fd="column">
     <Header />
-    <ScrollView>{children}</ScrollView>
+    <Main f={1}>{children}</Main>
   </View>
 );

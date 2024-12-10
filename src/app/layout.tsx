@@ -5,7 +5,7 @@ import { Providers } from "@/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "waifui",
+  title: "WaifUI",
   description:
     "Tamagui wrapper for customized copy/paste react primitive components.",
 };
