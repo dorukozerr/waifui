@@ -1,4 +1,4 @@
-import { Docs } from "@/views/docs";
+import { Docs } from "@/components/views/docs";
 
 const Page = () => <Docs />;
 

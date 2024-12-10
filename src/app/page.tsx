@@ -1,4 +1,4 @@
-import { HomePage } from "@/views/home-page";
+import { HomePage } from "@/components/views/home-page";
 
 const Page = () => <HomePage />;
 
