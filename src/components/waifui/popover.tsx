@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { Adapt, isWeb, Popover as TamaguiPopover, PopoverProps } from "tamagui";
+import { Adapt, Popover as TamaguiPopover, PopoverProps } from "tamagui";
 
 interface CustomPopoverProps extends PopoverProps {
   children: ReactNode;

@@ -21,7 +21,7 @@ export const ThemeSwitcher = () => {
       </PopoverTrigger>
       <PopoverContent>
         <YStack gap="$2">
-          <Button variant="default">
+          <Button variant="default" onPress={() => themeSetting.toggle()}>
             <Moon />
             Default
           </Button>

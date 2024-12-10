@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, ReactNode } from "react";
-import { Button as TamaguiButton, ButtonProps, Text, TextProps } from "tamagui";
+import { Button as TamaguiButton, ButtonProps, Text } from "tamagui";
 
 interface CustomButtonProps extends Omit<ButtonProps, "variant" | "size"> {
   children: ReactNode;
