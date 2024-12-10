@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     "Tamagui wrapper for customized copy/paste react primitive components.",
 };
 
-// Keep the font declarations for Next.js to load them
 const firaCondensed = Fira_Sans_Condensed({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],

@@ -47,7 +47,6 @@ export const Providers = ({ children }: { children: ReactNode }) => {
 
   return (
     <NextThemeProvider
-      skipNextHead
       onChangeTheme={(newTheme) => {
         setTheme(newTheme as "dark" | "light");
       }}
