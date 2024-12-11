@@ -8,14 +8,12 @@ import {
   NextThemeProvider,
   useRootTheme,
   getSystemTheme,
-  useThemeSetting,
 } from "@tamagui/next-theme";
 import { Layout } from "@/components/layout";
 import tamaguiConfig from "../../tamagui.config";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useRootTheme();
-  const { current } = useThemeSetting();
 
   useServerInsertedHTML(() => {
     // @ts-expect-error: doc suggests this
@@ -46,13 +44,14 @@ export const Providers = ({ children }: { children: ReactNode }) => {
     } else if (preferredTheme) {
       setTheme(preferredTheme as "light" | "dark");
     }
-  }, [setTheme, current]);
+  }, [setTheme]);
 
   return (
     <NextThemeProvider
-      onChangeTheme={(newTheme) => {
-        setTheme(newTheme as "dark" | "light");
-      }}
+      enableSystem
+      disableTransitionOnChange
+      defaultTheme="dark"
+      onChangeTheme={(newTheme) => setTheme(newTheme as "dark" | "light")}
     >
       <TamaguiProvider defaultTheme={theme} config={tamaguiConfig}>
         <Layout>{children}</Layout>
