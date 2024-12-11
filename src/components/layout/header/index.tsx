@@ -1,17 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Header as TamaguiHeader, XStack } from "tamagui";
 import { Button } from "@/components/waifui/button";
-
-const ThemeSwitcher = dynamic(
-  () =>
-    import("@/components/layout/header/theme-switcher").then(
-      (mod) => mod.ThemeSwitcher
-    ),
-  { ssr: false }
-);
+import { ThemeSwitcher } from "@/components/layout/header/theme-switcher";
 
 export const Header = () => {
   const router = useRouter();

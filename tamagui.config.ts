@@ -129,7 +129,6 @@ const extendedTokens = createTokens({
   color: {
     ...config.tokens.color,
     ...lightColors,
-    ...darkColors,
   },
 });
 
