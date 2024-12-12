@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 export const setThemePreference = async (newTheme: "light" | "dark") => {
   const { set } = cookies();
@@ -12,4 +13,8 @@ export const setThemePreference = async (newTheme: "light" | "dark") => {
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
   });
+
+  revalidatePath("/");
+  revalidatePath("/docs");
+  revalidatePath("/components");
 };
