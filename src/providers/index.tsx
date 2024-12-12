@@ -4,7 +4,9 @@ import { ReactNode } from "react";
 import { StyleSheet } from "react-native";
 import { useServerInsertedHTML } from "next/navigation";
 import { TamaguiProvider, PortalProvider } from "tamagui";
-import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
+import { NextThemeProvider } from "@tamagui/next-theme";
+import { ThemeContextProvider } from "@/context/theme-context";
+import { HeaderContextProvider } from "@/context/header-context";
 import { Layout } from "@/components/layout";
 import tamaguiConfig from "../../tamagui.config";
 
@@ -47,9 +49,13 @@ export const Providers = ({
         defaultTheme={themePreference ?? "dark"}
         config={tamaguiConfig}
       >
-        <PortalProvider>
-          <Layout>{children}</Layout>
-        </PortalProvider>
+        <ThemeContextProvider>
+          <HeaderContextProvider>
+            <PortalProvider>
+              <Layout>{children}</Layout>
+            </PortalProvider>
+          </HeaderContextProvider>
+        </ThemeContextProvider>
       </TamaguiProvider>
     </NextThemeProvider>
   );

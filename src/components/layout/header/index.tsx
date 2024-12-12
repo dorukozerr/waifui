@@ -1,11 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useContext } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { Header as TamaguiHeader, XStack } from "tamagui";
+import {
+  Header as TamaguiHeader,
+  ScrollView,
+  XStack,
+  YStack,
+  Separator,
+} from "tamagui";
 import { Menu } from "lucide-react";
+import { HeaderContext } from "@/context/header-context";
 import { useScreenSize } from "@/hooks/useScreenSize";
+import { baseIconStyle } from "@/lib/constants";
 import { Button } from "@/components/waifui/button";
 import {
   Sheet,
@@ -17,7 +25,7 @@ import {
 const ThemeSwitcher = dynamic(
   () =>
     import("@/components/layout/header/theme-switcher").then(
-      (i) => i.ThemeSwitcher
+      (e) => e.ThemeSwitcher
     ),
   {
     ssr: false,
@@ -26,9 +34,12 @@ const ThemeSwitcher = dynamic(
 );
 
 export const Header = () => {
-  const [sheetState, setSheetState] = useState({ open: false });
   const { push } = useRouter();
+  const { sheetState, setSheetState, mobileMenuCategories } =
+    useContext(HeaderContext);
   const { width } = useScreenSize();
+
+  console.count("Header");
 
   return (
     <>
@@ -59,7 +70,7 @@ export const Header = () => {
               variant="outlined"
               onPress={() => setSheetState({ open: true })}
             >
-              <Menu style={{ width: "1.2rem", height: "1.2rem" }} />
+              <Menu style={baseIconStyle} />
             </Button>
           ) : null}
         </XStack>
@@ -71,7 +82,24 @@ export const Header = () => {
         <SheetOverlay />
         <SheetHandle />
         <SheetFrame>
-          <Button>Sheet button</Button>
+          <ScrollView bc="$red5">
+            {mobileMenuCategories.map(
+              ({ category, subCategories }, categoryIndex) => (
+                <YStack key={`mobileMenuItem-${categoryIndex}`}>
+                  <Button>{category}</Button>
+                  {subCategories.map(({ label, onPress }, subCategoryIndex) => (
+                    <Button
+                      key={`mobileMenuItem-${categoryIndex}-${subCategoryIndex}`}
+                      onPress={onPress}
+                    >
+                      {label}
+                    </Button>
+                  ))}
+                  <Separator />
+                </YStack>
+              )
+            )}
+          </ScrollView>
         </SheetFrame>
       </Sheet>
     </>
