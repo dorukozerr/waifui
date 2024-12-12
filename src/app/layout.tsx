@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Fira_Sans_Condensed, Fira_Mono } from "next/font/google";
 import { Providers } from "@/providers";
 
@@ -26,12 +27,24 @@ const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) => (
-  <html lang="en">
-    <body className={`${firaCondensed.variable} ${firaMono.variable}`}>
-      <Providers>{children}</Providers>
-    </body>
-  </html>
-);
+}>) => {
+  const { get } = cookies();
+
+  const themePreference = get("themePreference");
+
+  return (
+    <html lang="en">
+      <body className={`${firaCondensed.variable} ${firaMono.variable}`}>
+        <Providers
+          themePreference={
+            themePreference?.value as "light" | "dark" | undefined
+          }
+        >
+          {children}
+        </Providers>
+      </body>
+    </html>
+  );
+};
 
 export default RootLayout;

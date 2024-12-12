@@ -101,6 +101,7 @@ const lightColors = {
   destructive: "#FF0000",
   destructiveForeground: "#F8FAFC",
   ring: "#94A3B8",
+  semiTransparentBackground: "#FFFFFF80",
 };
 
 const darkColors = {
@@ -123,12 +124,13 @@ const darkColors = {
   destructive: "#7F1D1D",
   destructiveForeground: "#F8FAFC",
   ring: "#1E293B",
+  semiTransparentBackground: "#03071280",
 };
 const extendedTokens = createTokens({
   ...config.tokens,
   color: {
     ...config.tokens.color,
-    ...lightColors,
+    ...darkColors,
   },
 });
 
@@ -154,6 +156,7 @@ export const tamaguiConfig = createTamagui({
     ...config.settings,
     onlyAllowShorthands: true,
     fastSchemeChange: false,
+    shouldAddPrefersColorThemes: true,
   },
 });
 

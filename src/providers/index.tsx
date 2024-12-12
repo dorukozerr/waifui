@@ -1,60 +1,55 @@
 "use client";
 
-import { useEffect, ReactNode } from "react";
+import { ReactNode } from "react";
 import { StyleSheet } from "react-native";
 import { useServerInsertedHTML } from "next/navigation";
-import { TamaguiProvider } from "tamagui";
-import {
-  NextThemeProvider,
-  useRootTheme,
-  getSystemTheme,
-} from "@tamagui/next-theme";
+import { TamaguiProvider, PortalProvider } from "tamagui";
+import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
 import { Layout } from "@/components/layout";
 import tamaguiConfig from "../../tamagui.config";
 
-export const Providers = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useRootTheme();
-
+export const Providers = ({
+  children,
+  themePreference,
+}: {
+  children: ReactNode;
+  themePreference?: "light" | "dark";
+}) => {
   useServerInsertedHTML(() => {
-    // @ts-expect-error: doc suggests this
-    const rnwStyle = StyleSheet.getSheet();
+    // TS workaround I think this is better than @ts-expect-error
+    const rnwStyle = (
+      StyleSheet as unknown as {
+        getSheet: () => { id: string; textContent: string };
+      }
+    ).getSheet();
 
     return (
       <>
         <style
-          dangerouslySetInnerHTML={{ __html: rnwStyle.textContent }}
           id={rnwStyle.id}
+          dangerouslySetInnerHTML={{ __html: rnwStyle.textContent }}
         />
         <style
           dangerouslySetInnerHTML={{
-            __html: tamaguiConfig.getCSS(),
+            __html: tamaguiConfig.getCSS({
+              exclude:
+                process.env.NODE_ENV === "production" ? "design-system" : null,
+            }),
           }}
         />
       </>
     );
   });
 
-  useEffect(() => {
-    const systemTheme = getSystemTheme();
-
-    const preferredTheme = localStorage.getItem("theme");
-
-    if (preferredTheme === "system") {
-      setTheme(systemTheme);
-    } else if (preferredTheme) {
-      setTheme(preferredTheme as "light" | "dark");
-    }
-  }, [setTheme]);
-
   return (
-    <NextThemeProvider
-      enableSystem
-      disableTransitionOnChange
-      defaultTheme="dark"
-      onChangeTheme={(newTheme) => setTheme(newTheme as "dark" | "light")}
-    >
-      <TamaguiProvider defaultTheme={theme} config={tamaguiConfig}>
-        <Layout>{children}</Layout>
+    <NextThemeProvider skipNextHead defaultTheme={themePreference ?? "dark"}>
+      <TamaguiProvider
+        defaultTheme={themePreference ?? "dark"}
+        config={tamaguiConfig}
+      >
+        <PortalProvider>
+          <Layout>{children}</Layout>
+        </PortalProvider>
       </TamaguiProvider>
     </NextThemeProvider>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { Adapt, Popover as TamaguiPopover, PopoverProps } from "tamagui";
+import { PopoverProps, Popover as TamaguiPopover } from "tamagui";
 import { useThemeSetting } from "@tamagui/next-theme";
 
 interface CustomPopoverProps extends PopoverProps {
@@ -20,30 +20,18 @@ export const PopoverContent = ({ children }: { children: ReactNode }) => {
   const { resolvedTheme } = useThemeSetting();
 
   return (
-    <>
-      <TamaguiPopover.Content
-        theme={resolvedTheme as "light" | "dark"}
-        bc="$popover"
-        bw="$0.25"
-        boc="$border"
-        enterStyle={{ y: -10, opacity: 0 }}
-        exitStyle={{ y: -10, opacity: 0 }}
-        elevate
-        animation={["quick", { opacity: { overshootClamping: true } }]}
-      >
-        {children}
-      </TamaguiPopover.Content>
-      <Adapt when="sm">
-        <TamaguiPopover.Sheet modal dismissOnSnapToBottom>
-          <TamaguiPopover.Sheet.Overlay />
-          <TamaguiPopover.Sheet.Frame>
-            <TamaguiPopover.Sheet.ScrollView>
-              <Adapt.Contents />
-            </TamaguiPopover.Sheet.ScrollView>
-          </TamaguiPopover.Sheet.Frame>
-        </TamaguiPopover.Sheet>
-      </Adapt>
-    </>
+    <TamaguiPopover.Content
+      theme={resolvedTheme as "light" | "dark"}
+      bc="$popover"
+      bw="$0.25"
+      boc="$border"
+      enterStyle={{ y: -10, opacity: 0 }}
+      exitStyle={{ y: -10, opacity: 0 }}
+      elevate
+      animation={["quick", { opacity: { overshootClamping: true } }]}
+    >
+      {children}
+    </TamaguiPopover.Content>
   );
 };
 

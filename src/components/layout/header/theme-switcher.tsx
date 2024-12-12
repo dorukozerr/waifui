@@ -3,6 +3,7 @@
 import { YStack } from "tamagui";
 import { useThemeSetting } from "@tamagui/next-theme";
 import { Moon, Sun, MonitorCog } from "lucide-react";
+import { setThemePreference } from "@/actions/theme";
 import {
   Popover,
   PopoverTrigger,
@@ -12,7 +13,7 @@ import {
 import { Button } from "@/components/waifui/button";
 
 export const ThemeSwitcher = () => {
-  const { set, resolvedTheme } = useThemeSetting();
+  const { set, resolvedTheme, systemTheme } = useThemeSetting();
 
   const themeVariants = [
     {
@@ -22,7 +23,10 @@ export const ThemeSwitcher = () => {
           Light
         </>
       ),
-      onPress: () => set("light"),
+      onPress: async () => {
+        set("light");
+        await setThemePreference("light");
+      },
     },
     {
       label: (
@@ -31,7 +35,10 @@ export const ThemeSwitcher = () => {
           Dark
         </>
       ),
-      onPress: () => set("dark"),
+      onPress: async () => {
+        set("dark");
+        await setThemePreference("dark");
+      },
     },
     {
       label: (
@@ -40,7 +47,10 @@ export const ThemeSwitcher = () => {
           System
         </>
       ),
-      onPress: () => set("system"),
+      onPress: async () => {
+        set(systemTheme ?? "dark");
+        await setThemePreference(systemTheme ?? "dark");
+      },
     },
   ];
 
