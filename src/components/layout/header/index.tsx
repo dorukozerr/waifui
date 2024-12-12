@@ -39,8 +39,6 @@ export const Header = () => {
     useContext(HeaderContext);
   const { width } = useScreenSize();
 
-  console.count("Header");
-
   return (
     <>
       <TamaguiHeader

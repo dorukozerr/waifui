@@ -1,7 +1,3 @@
-const Page = (props) => {
-  console.log("props =>", props)
- 
-  return <div>WaifUI components</div>;
-};
+const Page = () => <div>WaifUI components</div>;
 
 export default Page;

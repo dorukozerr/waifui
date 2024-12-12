@@ -43,18 +43,14 @@ export const HeaderContextProvider = ({
 
   const onNavigate = useCallback(
     (url: string) => {
-      console.count("onNavigate");
-
       push(url);
       setSheetState({ open: false });
     },
     [push, setSheetState]
   );
 
-  const mobileMenuCategories = useMemo(() => {
-    console.count("mobileMenuCategories");
-
-    return [
+  const mobileMenuCategories = useMemo(
+    () => [
       {
         category: "Theme",
         subCategories: themeOptions,
@@ -86,8 +82,9 @@ export const HeaderContextProvider = ({
           { label: "Sheet", onPress: () => onNavigate("/components/sheet") },
         ],
       },
-    ];
-  }, [themeOptions, onNavigate]);
+    ],
+    [themeOptions, onNavigate]
+  );
 
   return (
     <Provider value={{ sheetState, setSheetState, mobileMenuCategories }}>

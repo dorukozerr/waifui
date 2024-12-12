@@ -16,8 +16,6 @@ import { Button } from "@/components/waifui/button";
 export const ThemeSwitcher = () => {
   const { resolvedTheme, themeOptions } = useContext(ThemeContext);
 
-  console.count("ThemeSwitcher");
-
   return (
     <Popover>
       <PopoverTrigger>

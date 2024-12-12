@@ -25,12 +25,8 @@ export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
   const { Provider } = ThemeContext;
   const { set, systemTheme, resolvedTheme } = useThemeSetting();
 
-  console.count("ThemeContext");
-
   const changeTheme = useCallback(
     (newTheme: "light" | "dark" | "system") => {
-      console.count("changeTheme");
-
       set(newTheme === "system" ? systemTheme ?? "dark" : newTheme);
       setThemePreference(
         newTheme === "system" ? systemTheme ?? "dark" : newTheme
@@ -39,11 +35,9 @@ export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
     [set, systemTheme]
   );
 
-  const themeOptions: { label: JSX.Element; onPress: () => void }[] =
-    useMemo(() => {
-      console.count("themeOptions");
-
-      return [
+  const themeOptions: { label: JSX.Element; onPress: () => void }[] = useMemo(
+    () =>
+      [
         {
           label: (
             <>
@@ -71,8 +65,9 @@ export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
           ),
           onPress: () => changeTheme("system"),
         },
-      ] as const;
-    }, [changeTheme]);
+      ] as const,
+    [changeTheme]
+  );
 
   return (
     <Provider value={{ resolvedTheme, themeOptions }}>{children}</Provider>
